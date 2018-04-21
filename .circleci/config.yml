@@ -23,6 +23,8 @@ jobs:
       - restore_cache:
          key: circleci-docs-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
 
+      - run: bundle install
+
       - run:
           name: install dependencies
           command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
