@@ -21,18 +21,23 @@ jobs:
 
       # Download and cache dependencies
       - restore_cache:
-         key: circleci-docs-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-
-      - run: bundle install
+          keys:
+          - v1-dependencies-{{ checksum "Gemfile.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
 
       - run:
           name: install dependencies
-          command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
-
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
       - save_cache:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+        
+      # Database setup
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
 
       # run tests!
       - run:
@@ -46,7 +51,6 @@ jobs:
                             --out /tmp/test-results/rspec.xml \
                             --format progress \
                             $TEST_FILES
-
       # collect reports
       - store_test_results:
           path: /tmp/test-results
