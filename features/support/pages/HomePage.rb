@@ -37,7 +37,7 @@ class HomePage
     INPUT_CONFIRM_PASSWORD = {xpath: '//*[@id="input-confirm"]'}
     CLICK_SUBSCRIBE_NEWSLETTER = {css: '[class= radio-inline] input[value="0"]'}
     CLICK_PRIVACY_POLICY = {css:'input[type="checkbox"]:nth-child(2)'}
-    CLICK_CONTINUE_BUTTON = {css:'[class="btn btn-primary"]'}
+    CLICK_CONTINUE_BUTTON = {xpath:'//*[@type="submit"]'}
     MESSAGE_ACCOUNT_CONFIRMATED = {xpath: '//*[@id="content"]/h1'}
     CLICK_CONTACT_US = {css: '[class = "list-unstyled"] [href="http://opencart.abstracta.us:80/index.php?route=information/contact"]'}
     INPUT_NAME_CONTACT = {xpath: '//*[@id="input-name"]'}
@@ -184,16 +184,15 @@ class HomePage
     def fill_input_country(country)
         dropdown_list = browser.find_element(INPUT_COUNTRY)
         options = dropdown_list.find_elements(tag_name: 'option')
-        browser.manage.timeouts.implicit_wait = 10
         options.each { |option| option.click if option.text == country }
-        browser.manage.timeouts.implicit_wait = 10
+
     end
 
    def fill_input_state(state)
         dropdown_list = browser.find_element(INPUT_STATE)
         options = dropdown_list.find_elements(tag_name: 'option')
-        sleep 60
-        options.each { |option| option.click if option.text == state }
+        options.each { |option| option.click if option.text == state };
+        
     end
 
     def fill_password(password)
@@ -201,6 +200,7 @@ class HomePage
     end
 
     def fill_confirm_password(confirmPassword)
+        puts confirmPassword
         browser.find_element(INPUT_CONFIRM_PASSWORD).send_keys(confirmPassword)
     end
 
@@ -213,7 +213,7 @@ class HomePage
     end
 
     def click_continue_button
-        browser.find_element(CLICK_CONTINUE_BUTTON).click
+        browser.find_element(CLICK_CONTINUE_BUTTON).submit()
     end
 
      def verify_message_account

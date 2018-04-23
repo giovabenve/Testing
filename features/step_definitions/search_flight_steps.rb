@@ -273,7 +273,7 @@ And(/I enter my Password (.*)$/) do |password|
 end
 
 
-And(/I enter Password Confirm(.*)$/) do |confirmPassword|
+And(/I enter Password Confirm (.*)$/) do |confirmPassword|
 	begin
 		@page.fill_confirm_password(confirmPassword)
 	rescue => e

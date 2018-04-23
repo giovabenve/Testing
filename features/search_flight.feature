@@ -48,7 +48,7 @@ Feature: search_flight
     	And I enter my Country <country>
     	And I enter my State <state>
      	And I enter my Password <password>
-    	And I enter Password Confirm <passwordConfirm>
+    	And I enter Password Confirm <confirmPassword>
     	And I click in Subscribe Newsletter <subscribeNewsletter>
     	And I click in Privacy Policy
     	And I click in button to finish
@@ -56,8 +56,13 @@ Feature: search_flight
 
 
     Examples:
-		|firstName| lastName | email             | tel       | fax     | company   | adress        | sndadress | city       | postcode | country | state | password | confirmPassword | subscribeNewsletter |
-		| Carla  | Gonzalez  | carlg3@gmail.com  | 094543234 | 2345654 | CarGon SA | av brasil 321 | None      | Montevideo | 11200.   | Uruguay | Rocha | 1234 | 1234 | No |
+		|firstName| lastName  | email               | tel       | fax     | company   | adress        | sndadress | city       | postcode | country        | state     | password      | confirmPassword | subscribeNewsletter |
+		| Carla   | Gonzalez  | carg3@gmail.com     | 094543234 | 2345654 | CarGon SA | av brasil 321 | None      | Bristol    | 11200.   | United Kingdom | Bristol   | 1234          | 1234            | No                  |
+		| Maria   | Soler     | masoler@gmail.com   | 097643568 | 2567322 | MariSoler | av espana 321 | None      | Edinburgh  | 11300.   | United Kingdom | Edinburgh | admin1234     | admin1234       | No                  |
+		| Ariel   | Mendez    | armendez3@gmail.com | 091432456 | 2234677 | Iphone SA | cassinoni 331 | None      | Cardiff    | 10200.   | United Kingdom | Cardiff   | passpalabra   | passpalabra     | No                  |
+		| Bruno   | Pereyra   | brupereyra@gmail.com| 098456783 | 2358908 | None      | blv espana 32 | None      | Glasgow    | 10900.   | United Kingdom | Glasgow   | 4311          | 4311            | No                  |
+		| Julieta | Perez     | juperez@gmail.com   | 099345024 | 2234567 | Jupe SA   | ac.dias 123   | None      | Aberdeen   | 12300.   | United Kingdom | Aberdeen  | prueb1        | prueb1          | No                  |
+		| Sofia   | Martinez  | sofiam3@gmail.com   | 092321575 | 2235689 | SoMAR SRL | peru 321 	  | None      | Hampshire  | 11350.   | United Kingdom | Hampshire | testtest      | testtest        | No                  |
 
 
     @test_case 
